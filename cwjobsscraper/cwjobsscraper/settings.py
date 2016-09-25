@@ -37,6 +37,9 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # 3rd party apps
+    'bootstrap3',
+    'cwjobs'
 )
 
 MIDDLEWARE_CLASSES = (
@@ -76,8 +79,12 @@ WSGI_APPLICATION = 'cwjobsscraper.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'cwjobscraper',
+        'USER': 'dennis',
+        'PASSWORD': 'sychosid',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
@@ -87,7 +94,7 @@ DATABASES = {
 
 LANGUAGE_CODE = 'en-us'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/London'
 
 USE_I18N = True
 
