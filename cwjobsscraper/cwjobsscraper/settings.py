@@ -44,6 +44,7 @@ INSTALLED_APPS = (
     # my apps
     'cwjobs',
     'users',
+    'contact',
 )
 
 MIDDLEWARE_CLASSES = (
