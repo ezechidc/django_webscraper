@@ -79,7 +79,12 @@ WSGI_APPLICATION = 'cwjobsscraper.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+
+import psycopg2.extensions
 DATABASES = {
+'OPTIONS': {
+        'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
+    },
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cwjobscraper',

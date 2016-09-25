@@ -1,4 +1,44 @@
-<h1>Hello</h1>
-{% for jobs in python_jobs_london %}
- {{jobs.title}}
-{% endfor %}
+{% extends 'cwjobs/base.html' %}
+{% block content %}
+<h4></h4>
+<div class="panel panel-default">
+<div class="panel-heading text-center">Find below the list of python jobs posted on
+    <a href="www.cwjobs.co.uk">Cwjobs</a> for London in the last 24 hours</div>
+<table class="table table-bordered">
+    <tr>
+        <th>Job Title</th>
+        <th>Employment Type</th>
+        <th>Salary</th>
+        <th>Date Posted</th>
+    </tr>
+    {% for job in jobs %}
+    <tr>
+        <td><a href="{{ job.url }}">{{ job.title }}</a></td>
+        <td>{{ job.employment_type }}</td>
+        <td>{{ job.salary }}</td>
+        <td>{{ job.date_posted }}</td>
+    </tr>
+    {% endfor %}
+</table>
+</div>
+<div class="row">
+<div class="col-md-12 text-center">
+<div class="pagination" >
+
+    <span class="step-links">
+        {% if jobs.has_previous %}
+            <a href="?page={{ jobs.previous_page_number }} ">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ jobs.number }} of {{ jobs.paginator.num_pages }}.
+        </span>
+
+        {% if jobs.has_next %}
+            <a href="?page={{ jobs.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+    </div>
+    </div>
+{% endblock %}
