@@ -1,0 +1,4 @@
+/env
+__pyc__
+.idea/
+*.pyc
