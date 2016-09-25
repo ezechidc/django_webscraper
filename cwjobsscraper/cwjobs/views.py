@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from .models import PythonJobLondon
 
 
-@login_required()
+
 def index(request):
     # the home page for cwjobs scraper site
     python_jobs_london = PythonJobLondon.objects.order_by('-date_posted')

@@ -39,10 +39,10 @@
           <ul class="nav navbar-nav navbar-right">
             {% if user.is_authenticated %}
               <li><a>Hello, {{ user.username }}.</a></li>
-              <li><a href="#">Log out</a></li>
+              <li><a href="{% url 'users:logout' %}">Log out</a></li>
             {% else %}
-              <li><a href="#">Register</a></li>
-              <li><a href="#">Log in</a></li>
+              <li><a href="{% url 'users:register' %}">Register</a></li>
+              <li><a href="{% url 'users:login' %}">Log in</a></li>
             {% endif %}
           </ul>
         </div><!--/.nav-collapse -->

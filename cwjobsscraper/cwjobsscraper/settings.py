@@ -41,7 +41,9 @@ INSTALLED_APPS = (
     'bootstrap3',
      'djcelery',
     'kombu.transport.django',
-    'cwjobs'
+    # my apps
+    'cwjobs',
+    'users',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -80,11 +82,8 @@ WSGI_APPLICATION = 'cwjobsscraper.wsgi.application'
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
 
-import psycopg2.extensions
+
 DATABASES = {
-'OPTIONS': {
-        'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_SERIALIZABLE,
-    },
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cwjobscraper',

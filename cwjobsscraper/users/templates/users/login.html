@@ -1,0 +1,19 @@
+{% extends 'cwjobs/base.html' %}
+{% load bootstrap3 %}
+
+{% block content %}
+<div class="row">
+ <div class="col-md-4 col-md-offset-4 " >
+{% if form.errors %}
+  <p>Your username and password didn't match. Please try again.</p>
+{% endif %}
+
+        <form method="post" action="{% url 'users:login' %}">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button class="btn btn-default" name="submit">Log in</button>
+            <input type="hidden" name="next" value="{% url 'cwjobs:index' %}" />
+        </form>
+    </div>
+</div>
+{% endblock %}
