@@ -9,6 +9,7 @@ from .models import PythonJobLondon
 @periodic_task(run_every=(crontab(minute='*/5')),
                name="search_python", ignore_results=True)
 def search_python():
+    """search for python jobs posted in London within the last 24 hours"""
     urlformat = 'http://www.cwjobs.co.uk/jobs/python/in-london?postedwithin=1&page={page}'
     for num in range(11):
         next_page = str(num)
