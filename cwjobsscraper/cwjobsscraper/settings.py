@@ -88,8 +88,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cwjobscraper',
-        'USER': 'dennis',
-        'PASSWORD': 'sychosid',
+        'USER': 'username',
+        'PASSWORD': 'password',
         'HOST': 'localhost',
         'PORT': '5432',
     }
