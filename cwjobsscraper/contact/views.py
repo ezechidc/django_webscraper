@@ -1,14 +1,15 @@
 from django.conf import settings
 from django.shortcuts import render
 from django.core.mail import send_mail
+from django.contrib.auth.decorators import login_required
 
 
 from .forms import ContactForm
 
-
+@login_required()
 def contact(request):
     form = ContactForm(request.POST or None)
-
+    sent = False
     if form.is_valid():
         contact_name = form.cleaned_data.get('contact_name')
         contact_email = form.cleaned_data.get('contact_email')
@@ -28,7 +29,8 @@ def contact(request):
                   from_email,
                   to_email,
                   fail_silently=False)
-    context = {'form': form}
+        sent = True
+    context = {'form': form, 'sent': sent}
 
     return render(request, 'contact/contact.html', context)
 

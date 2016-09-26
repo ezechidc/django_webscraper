@@ -4,14 +4,19 @@
 
 
 {% block content %}
-<div class="row">
- <div class="col-md-8 col-md-offset-2 " >
-    <h1>Contact Us</h1>
-    <form role="form" action="" method="post">
-        {% csrf_token %}
-        {% bootstrap_form form %}
-        <button type="submit">Submit</button>
-    </form>
-   </div>
-</div>
+{% if sent %}
+    <h1>Message successfully sent</h1>
+    <p>Click <a href="{% url 'cwjobs:index' %}">here</a> to return to home page</p>
+{% else %}
+    <div class="row">
+     <div class="col-md-8 col-md-offset-2 " >
+        <h1>Contact Us</h1>
+        <form role="form" action="" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            <button type="submit">Submit</button>
+        </form>
+       </div>
+    </div>
+{% endif %}
 {% endblock %}

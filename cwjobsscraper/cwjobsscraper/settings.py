@@ -115,6 +115,22 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+# login page
+LOGIN_URL = '/users/login/'
+
+# Settings for django-bootstrap3
+BOOTSTRAP3 = {
+   'include_jquery': True,
+}
+
+# contact form email settings
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+ALLOWED_HOSTS = ['*']
+EMAIL_USE_TLS = True
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = 'gmail'
+EMAIL_HOST_PASSWORD = 'gmailpassword'
+EMAIL_PORT = 587
 # CELERY STUFF
 BROKER_URL = 'redis://localhost:6379'
 CELERY_RESULT_BACKEND = 'redis://localhost:6379'
