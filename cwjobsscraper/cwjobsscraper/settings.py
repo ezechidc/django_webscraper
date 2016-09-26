@@ -88,8 +88,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cwjobscraper',
-        'USER': 'username',
-        'PASSWORD': 'password',
+        'USER': 'dennis',
+        'PASSWORD': 'sychosid',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -128,8 +128,8 @@ BOOTSTRAP3 = {
 ALLOWED_HOSTS = ['*']
 EMAIL_USE_TLS = True
 EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_HOST_USER = 'gmail'
-EMAIL_HOST_PASSWORD = 'gmailpassword'
+EMAIL_HOST_USER = '@gmail.com'
+EMAIL_HOST_PASSWORD = 'password'
 EMAIL_PORT = 587
 # CELERY STUFF
 BROKER_URL = 'redis://localhost:6379'

@@ -36,14 +36,12 @@ def search_python():
             date_found = time
 
             # Check if a job exists in the database before saving
-            a, created = PythonJobLondon.objects.update_or_create(title=list_job_title,
-                                                                    url=job_url,
+            a, created = PythonJobLondon.objects.get_or_create(title=list_job_title,
+                                                                url=job_url,
                                                                 salary=salary,
                                                                 date_posted=date_posted,
                                                                 employment_type=employment_type,
-                                                                date_found=date_found,
-                                                                defaults=None)
-            a.save()
+                                                                defaults={'date_found': date_found})
     return
 
 
