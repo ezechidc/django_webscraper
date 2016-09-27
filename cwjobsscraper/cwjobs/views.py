@@ -7,7 +7,7 @@ from .models import PythonJobLondon
 @login_required()
 def index(request):
     # the home page for cwjobs scraper site
-    python_jobs_london = PythonJobLondon.objects.order_by('-date_posted')
+    python_jobs_london = PythonJobLondon.objects.order_by('-date_found')
     paginator = Paginator(python_jobs_london, 25) # Show 25 contacts per page
     page = request.GET.get('page')
     try:

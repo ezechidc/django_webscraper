@@ -10,6 +10,7 @@
         <th>Employment Type</th>
         <th>Salary</th>
         <th>Date Posted</th>
+        <th>Date/Time Found</th>
     </tr>
     {% for job in jobs %}
     <tr>
@@ -17,6 +18,7 @@
         <td>{{ job.employment_type }}</td>
         <td>{{ job.salary }}</td>
         <td>{{ job.date_posted }}</td>
+        <td>{{ job.date_found }}</td>
     </tr>
     {% endfor %}
 </table>
