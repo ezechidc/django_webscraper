@@ -1,10 +1,9 @@
 from celery.schedules import crontab
 from celery.decorators import periodic_task
 from bs4 import BeautifulSoup
-from django.db import transaction
-from django.db import IntegrityError
 import requests
 from django.utils import timezone
+
 from .models import PythonJobLondon
 
 
@@ -37,8 +36,6 @@ def search_python():
             employment_type = job_employment_type.text.encode("utf-8")
             date_found = time
 
-
-
             # Check if a job exists in the database before saving
             if not PythonJobLondon.objects.filter(title=list_job_title, url=job_url).exists():
                 job = PythonJobLondon(
@@ -50,8 +47,6 @@ def search_python():
                     date_found=date_found
                 )
                 job.save()
-
-
     return
 
 
