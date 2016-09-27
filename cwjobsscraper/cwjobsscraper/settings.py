@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.8/ref/settings/
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
+import psycopg2.extensions
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -84,6 +85,8 @@ WSGI_APPLICATION = 'cwjobsscraper.wsgi.application'
 
 
 
+
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -92,6 +95,10 @@ DATABASES = {
         'PASSWORD': 'sychosid',
         'HOST': 'localhost',
         'PORT': '5432',
+
+    },
+    'OPTIONS': {
+        'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_READ_COMMITTED,
     }
 }
 
