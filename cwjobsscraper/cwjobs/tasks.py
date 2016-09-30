@@ -17,10 +17,11 @@ def build_job_search_url():
     return url
 
 
-@periodic_task(run_every=(crontab(minute='*/5')),
-               name="get_job_details", ignore_results=True)
 def get_job_details():
+    """calls build_job_search_url() and get job details like title, url,
+    date_posted, date_found and employment_type"""
     time = timezone.now()
+    job_details = []
     for url in build_job_search_url():
         b = requests.get(url)
         soup = BeautifulSoup(b.content, "html.parser")
@@ -29,19 +30,22 @@ def get_job_details():
         get_job_salary = soup.find_all("li", {"class": "salary"})
         get_employment_type = soup.find_all("li", {"class": "job-type"})
 
-        for list_of_job_title, date, job_salary, \
-            job_employment_type in map(None, get_job_title, get_date_posted,
-                                       get_job_salary, get_employment_type):
-            # iterate through the retrieved page to find job title, url and date posted.
-            job_url = list_of_job_title.contents[3].attrs['content']
-            job_title = list_of_job_title.contents[1].attrs['content']
-            date_posted = date.attrs['content']
-            salary = job_salary.text.encode("utf-8")
-            employment_type = job_employment_type.text.encode("utf-8")
-            date_found = time
+        job_url = get_job_title.contents[3].attrs['content']
+        job_title = get_job_title.contents[1].attrs['content']
+        date_posted = get_date_posted.attrs['content']
+        salary = get_job_salary.text.encode("utf-8")
+        employment_type = get_employment_type.text.encode("utf-8")
+        date_found = time
+        job_records = (job_url, job_title, date_posted, salary, employment_type, date_found)
+        job_details.append(job_records)
+    return job_details
 
-            # Check if a job exists in the database before saving
-            if not PythonJobLondon.objects.filter(title=job_title, url=job_url).exists():
+
+@periodic_task(run_every=(crontab(minute='*/5')), name="save_jobs", ignore_results=True)
+def save_jobs():
+    """check if jobs exists in database before saving to avoid duplicate entry"""
+    for job_url, job_title, date_posted, salary, employment_type, date_found in get_job_details():
+         if not PythonJobLondon.objects.filter(title=job_title, url=job_url).exists():
                 job = PythonJobLondon(
                     title=job_title,
                     url=job_url,

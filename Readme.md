@@ -19,5 +19,5 @@ last 24 hours at www.cwjobs.co.uk using request and beautifullsoup4.
 5) Date job was posted
 
 A celery tasks was then hooked to he function to search for new job posted
-on the website every 15 minutes. Django was then used to store, retrieve
+on the website every 5 minutes. Django was then used to store, retrieve
 and process the information for viewing on a web browser.
