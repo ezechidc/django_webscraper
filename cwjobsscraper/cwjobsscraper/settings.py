@@ -92,7 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cwjobscraper',
         'USER': 'dennis',
-        'PASSWORD': 'password',
+        'PASSWORD': 'sychosid',
         'HOST': 'localhost',
         'PORT': '5432',
 
