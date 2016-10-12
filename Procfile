@@ -1,2 +1,1 @@
-web: gunicorn cwjobsscraper.wsgi --log-file -
-worker: python manage.py celeryd -B -l info
+web: honcho -f Procfile.real start
