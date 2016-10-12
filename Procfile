@@ -1,2 +1,1 @@
-web: gunicorn cwjobsscraper.wsgi --log-file -
-main_worker: python manage.py celery worker --beat --loglevel=info
+web: env > .env; env PYTHONUNBUFFERED=true honcho start -f Procfile.real 2>&1
