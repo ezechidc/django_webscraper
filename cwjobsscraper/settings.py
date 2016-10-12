@@ -136,11 +136,19 @@ EMAIL_HOST_PASSWORD = 'password'
 EMAIL_PORT = 587
 # CELERY STUFF
 BROKER_URL = os.environ.get("REDISCLOUD_URL", "django://")
+BROKER_TRANSPORT_OPTIONS = {
+    "max_connections": 2,
+}
+BROKER_POOL_LIMIT = None
+if BROKER_URL == "django://":
+    INSTALLED_APPS += ("kombu.transport.django",)
+
 CELERY_RESULT_BACKEND = os.environ.get("REDISCLOUD_URL", "django://")
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Europe/London'
+
 
 # Heroku Settings
 if os.getcwd() == '/app':
