@@ -92,7 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'cwjobscraper',
         'USER': 'dennis',
-        'PASSWORD': 'password',
+        'PASSWORD': 'sychosid',
         'HOST': 'localhost',
         'PORT': '5432',
 
@@ -145,3 +145,25 @@ CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Europe/London'
+
+# Heroku Settings
+if __name__ == '__main__':
+    if os.getcwd() == '/app':
+        import dj_database_url
+        DATABASES = {
+            'default': dj_database_url.config(default='postgress://localhost')
+        }
+
+        # Honor the 'X forward-proto' header for request.is_secure().
+        SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARD_PROTO', 'https')
+
+        # Allow all host headers.
+        ALLOWED_HOSTS = ['*']
+
+        # Static asset configuration
+        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        STATIC_ROOT = 'staticfiles'
+
+        STATICFILES_DIRS = (
+            os.path.join(BASE_DIR, 'static'),
+        )
