@@ -140,9 +140,6 @@ BROKER_TRANSPORT_OPTIONS = {
     "max_connections": 2,
 }
 BROKER_POOL_LIMIT = None
-if BROKER_URL == "django://":
-    INSTALLED_APPS += ("kombu.transport.django",)
-
 CELERY_RESULT_BACKEND = os.environ.get("REDISCLOUD_URL", "django://")
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
