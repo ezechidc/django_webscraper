@@ -135,17 +135,12 @@ EMAIL_HOST_USER = '@gmail.com'
 EMAIL_HOST_PASSWORD = 'password'
 EMAIL_PORT = 587
 # CELERY STUFF
-BROKER_URL = os.environ.get("REDISCLOUD_URL", "django://")
-BROKER_TRANSPORT_OPTIONS = {
-    "max_connections": 2,
-}
-BROKER_POOL_LIMIT = None
-CELERY_RESULT_BACKEND = os.environ.get("REDISCLOUD_URL", "django://")
+BROKER_URL = 'redis://h:pcpoimpkctmj4h5pv45md4lrutk@ec2-54-235-205-98.compute-1.amazonaws.com:10759'
+CELERY_RESULT_BACKEND = 'redis://h:pcpoimpkctmj4h5pv45md4lrutk@ec2-54-235-205-98.compute-1.amazonaws.com:10759'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Europe/London'
-
 
 # Heroku Settings
 if os.getcwd() == '/app':
