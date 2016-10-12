@@ -24,7 +24,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = '$l(k+t-*0k5y)wx587nctlxd1u%*=w1e9^cd+xjl$2hgn7++np'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = []
 
@@ -40,7 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     # 3rd party apps
     'bootstrap3',
-     'djcelery',
+    'djcelery',
     'kombu.transport.django',
     # my apps
     'cwjobs',
@@ -161,7 +161,7 @@ if __name__ == '__main__':
         ALLOWED_HOSTS = ['*']
 
         # Static asset configuration
-        BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
         STATIC_ROOT = 'staticfiles'
 
         STATICFILES_DIRS = (
