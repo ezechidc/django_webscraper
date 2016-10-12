@@ -86,7 +86,7 @@ WSGI_APPLICATION = 'cwjobsscraper.wsgi.application'
 
 
 
-
+"""
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -101,7 +101,7 @@ DATABASES = {
         'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_READ_COMMITTED,
     }
 }
-
+"""
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
