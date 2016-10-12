@@ -1,1 +1,3 @@
-web: honcho -f Procfile.real start
+web: gunicorn cwjobsscraper.wsgi --log-file -
+worker: python manage.py celery -A cwjobsscraper worker --loglevel=info
+celery_beat: python manage.py celery -A cwjobsscraper beat --loglevel=info
