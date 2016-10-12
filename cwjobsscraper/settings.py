@@ -86,22 +86,22 @@ WSGI_APPLICATION = 'cwjobsscraper.wsgi.application'
 
 
 
-"""
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'cwjobscraper',
-        'USER': 'dennis',
-        'PASSWORD': 'sychosid',
-        'HOST': 'localhost',
-        'PORT': '5432',
 
-    },
-    'OPTIONS': {
-        'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_READ_COMMITTED,
-    }
-}
-"""
+# DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#        'NAME': 'cwjobscraper',
+#        'USER': 'dennis',
+#        'PASSWORD': 'sychosid',
+#        'HOST': 'localhost',
+#        'PORT': '5432',
+#
+#    },
+#    'OPTIONS': {
+#        'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_READ_COMMITTED,
+#    }
+#}
+
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.8/topics/i18n/
@@ -151,7 +151,7 @@ if __name__ == '__main__':
     if os.getcwd() == '/app':
         import dj_database_url
         DATABASES = {
-            'default': dj_database_url.config(default='postgress://localhost')
+            'default': dj_database_url.config(default='postgres://localhost')
         }
 
         # Honor the 'X forward-proto' header for request.is_secure().
