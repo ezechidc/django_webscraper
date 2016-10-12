@@ -83,10 +83,6 @@ WSGI_APPLICATION = 'cwjobsscraper.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-
-
-
-
 # DATABASES = {
 #    'default': {
 #        'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -147,23 +143,24 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_TIMEZONE = 'Europe/London'
 
 # Heroku Settings
-if __name__ == '__main__':
-    if os.getcwd() == '/app':
-        import dj_database_url
-        DATABASES = {
-            'default': dj_database_url.config(default='postgres://localhost')
-        }
+if os.getcwd() == '/app':
+    import dj_database_url
 
-        # Honor the 'X forward-proto' header for request.is_secure().
-        SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARD_PROTO', 'https')
+    DATABASES = {
+        'default': dj_database_url.config(default='postgres://localhost')
+    }
 
-        # Allow all host headers.
-        ALLOWED_HOSTS = ['*']
+    # Honor the 'X forward-proto' header for request.is_secure().
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARD_PROTO', 'https')
 
-        # Static asset configuration
-        BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-        STATIC_ROOT = 'staticfiles'
+    # Allow all host headers.
+    ALLOWED_HOSTS = ['*']
 
-        STATICFILES_DIRS = (
-            os.path.join(BASE_DIR, 'static'),
-        )
+    # Static asset configuration
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+    STATIC_ROOT = 'staticfiles'
+
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
+
