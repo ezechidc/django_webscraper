@@ -34,18 +34,17 @@ def get_job_details():
                                                                      get_date_posted,
                                                                      get_job_salary,
                                                                      get_employment_type):
-            job_url = get_job_title.contents[3].attrs['content']
-            job_title = get_job_title.contents[1].attrs['content']
-            date_posted = get_date_posted.attrs['content']
-            salary = get_job_salary.text.encode("utf-8")
-            employment_type = get_employment_type.text.encode("utf-8")
+            job_url = _job_title.contents[3].attrs['content']
+            job_title = _job_title.contents[1].attrs['content']
+            date_posted = date.attrs['content']
+            salary = job_salary.text.encode("utf-8")
+            employment_type = job_employment_type.text.encode("utf-8")
             date_found = time
             job_records = {'url': job_url, 'title': job_title, 'date_posted':date_posted,
                            'salary': salary, 'employment': employment_type, 'date': date_found}
             job_details.append(job_records)
     return job_details
 
-print(get_job_details())
 @periodic_task(run_every=(crontab(minute='*/5')), name="save_jobs", ignore_results=True)
 def save_jobs():
     """check if jobs exists in database before saving to avoid duplicate entry"""
