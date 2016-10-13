@@ -30,15 +30,15 @@ def get_job_details():
         get_job_salary = soup.find_all("li", {"class": "salary"})
         get_employment_type = soup.find_all("li", {"class": "job-type"})
 
-        job_url = get_job_title.contents[3].attrs['content']
-        job_title = get_job_title.contents[1].attrs['content']
-        date_posted = get_date_posted.attrs['content']
-        salary = get_job_salary.text.encode("utf-8")
-        employment_type = get_employment_type.text.encode("utf-8")
-        date_found = time
-        job_records = {'url': job_url, 'title': job_title, 'date_posted':date_posted,
-                       'salary': salary, 'employment': employment_type, 'date': date_found}
-        job_details.append(job_records)
+            job_url = get_job_title.contents[3].attrs['content']
+            job_title = get_job_title.contents[1].attrs['content']
+            date_posted = get_date_posted.attrs['content']
+            salary = get_job_salary.text.encode("utf-8")
+            employment_type = get_employment_type.text.encode("utf-8")
+            date_found = time
+            job_records = {'url': job_url, 'title': job_title, 'date_posted':date_posted,
+                           'salary': salary, 'employment': employment_type, 'date': date_found}
+            job_details.append(job_records)
     return job_details
 
 
@@ -50,8 +50,8 @@ def save_jobs():
                 job = PythonJobLondon(
                     title=jobs['title'],
                     url=jobs['url'],
-                    salary=job['salary'],
-                    date_posted=job['date'],
+                    salary=jobs['salary'],
+                    date_posted=jobs['date_posted'],
                     employment_type=jobs['employment'],
                     date_found=jobs['date']
                 )
