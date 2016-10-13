@@ -29,7 +29,11 @@ def get_job_details():
         get_date_posted = soup.find_all("meta", {"property": "datePosted"})
         get_job_salary = soup.find_all("li", {"class": "salary"})
         get_employment_type = soup.find_all("li", {"class": "job-type"})
-
+        for _job_title, date, job_salary, job_employment_type in map(None,
+                                                                     get_job_title,
+                                                                     get_date_posted,
+                                                                     get_job_salary,
+                                                                     get_employment_type):
             job_url = get_job_title.contents[3].attrs['content']
             job_title = get_job_title.contents[1].attrs['content']
             date_posted = get_date_posted.attrs['content']
@@ -41,7 +45,7 @@ def get_job_details():
             job_details.append(job_records)
     return job_details
 
-
+print(get_job_details())
 @periodic_task(run_every=(crontab(minute='*/5')), name="save_jobs", ignore_results=True)
 def save_jobs():
     """check if jobs exists in database before saving to avoid duplicate entry"""
