@@ -10,3 +10,5 @@ urlpatterns = [
     url(r'^contact/', include('contact.urls', namespace='contact')),
     url(r'^users/', include('users.urls', namespace='users')),
 ]
+if not settings.DEBUG:
+    urlpatterns += static(settings.STATIC_URL, {'document_root': settings.STATIC_ROOT})
