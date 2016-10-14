@@ -1,2 +1,3 @@
 web: gunicorn cwjobsscraper.wsgi --log-file -
-worker: celery -A cwjobsscraper worker -B --loglevel=info
+worker: python manage.py celery -A cwjobsscraper worker --loglevel=info
+celery_beat: python manage.py celery -A cwjobsscraper beat --loglevel=info
