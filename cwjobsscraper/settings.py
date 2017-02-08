@@ -83,20 +83,20 @@ WSGI_APPLICATION = 'cwjobsscraper.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
-# DATABASES = {
-#    'default': {
-#        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#        'NAME': 'cwjobscraper',
-#        'USER': 'dennis',
-#        'PASSWORD': 'sychosid',
-#        'HOST': 'localhost',
-#        'PORT': '5432',
-#
-#    },
-#    'OPTIONS': {
-#        'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_READ_COMMITTED,
-#    }
-#}
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'cwjobscraper',
+        'USER': 'dennis',
+        'PASSWORD': 'sychosid',
+        'HOST': 'localhost',
+        'PORT': '5432',
+
+    },
+    'OPTIONS': {
+       'isolation_level': psycopg2.extensions.ISOLATION_LEVEL_READ_COMMITTED,
+   }
+}
 
 
 # Internationalization
@@ -140,8 +140,8 @@ EMAIL_HOST_USER = '@gmail.com'
 EMAIL_HOST_PASSWORD = 'password'
 EMAIL_PORT = 587
 # CELERY STUFF
-BROKER_URL = 'redis://h:pcpoimpkctmj4h5pv45md4lrutk@ec2-54-235-205-98.compute-1.amazonaws.com:10759'
-CELERY_RESULT_BACKEND = 'redis://h:pcpoimpkctmj4h5pv45md4lrutk@ec2-54-235-205-98.compute-1.amazonaws.com:10759'
+BROKER_URL = 'redis://h:pcpoimpkctmj4h5pv45md4lrutk@ec2-54-221-230-87.compute-1.amazonaws.com:10079'
+CELERY_RESULT_BACKEND = 'redis://h:pcpoimpkctmj4h5pv45md4lrutk@ec2-54-221-230-87.compute-1.amazonaws.com:10079'
 CELERY_ACCEPT_CONTENT = ['application/json']
 CELERY_TASK_SERIALIZER = 'json'
 CELERY_RESULT_SERIALIZER = 'json'
