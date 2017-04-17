@@ -14,7 +14,7 @@
     </tr>
     {% for job in jobs %}
     <tr>
-        <td><a href="{{ job.url }}">{{ job.title }}</a></td>
+        <td><a rel="nofollow" target="_blank" href="{{ job.url }}">{{ job.title }}</a></td>
         <td>{{ job.employment_type }}</td>
         <td>{{ job.salary }}</td>
         <td>{{ job.date_posted }}</td>
