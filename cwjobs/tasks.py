@@ -1,5 +1,6 @@
 from celery.schedules import crontab
 from celery.decorators import periodic_task
+from datetime import datetime, date, timedelta
 from bs4 import BeautifulSoup
 import requests
 from django.utils import timezone
@@ -26,21 +27,26 @@ def get_job_details():
         b = requests.get(url)
         soup = BeautifulSoup(b.content, "html.parser")
         get_job_title = soup.find_all("div", {"class": "job-title"})
-        get_date_posted = soup.find_all("meta", {"property": "datePosted"})
+        get_job_title = soup.find_all("div", {"class": "job-title"})
+        get_date_posted = soup.find_all("li", {"class": "date-posted"})
         get_job_salary = soup.find_all("li", {"class": "salary"})
         get_employment_type = soup.find_all("li", {"class": "job-type"})
-        for _job_title, date, job_salary, job_employment_type in map(None,
-                                                                     get_job_title,
-                                                                     get_date_posted,
-                                                                     get_job_salary,
-                                                                     get_employment_type):
-            job_url = _job_title.contents[3].attrs['content']
-            job_title = _job_title.contents[1].attrs['content']
-            date_posted = date.attrs['content']
-            salary = job_salary.text.encode("utf-8")
-            employment_type = job_employment_type.text.encode("utf-8")
+        for _job_title, date_post, job_salary, job_employment_type in map(lambda w, x, y, z: (w, x, y, z),
+                                                                          get_job_title,
+                                                                          get_date_posted,
+                                                                          get_job_salary,
+                                                                          get_employment_type):
+            job_url = _job_title.text.strip("\n")
+
+            job_title = _job_title.text.strip("\n")
+            if date_post.text.strip("\n") == 'Today':
+                date_posted = date.today()
+            else:
+                date_posted = date.today() - timedelta(1)
+            salary = job_salary.text.strip("\n")
+            employment_type = job_employment_type.text.strip("\n")
             date_found = time
-            job_records = {'url': job_url, 'title': job_title, 'date_posted':date_posted,
+            job_records = {'url': job_url, 'title': job_title, 'date_posted': date_posted,
                            'salary': salary, 'employment': employment_type, 'date': date_found}
             job_details.append(job_records)
     return job_details
