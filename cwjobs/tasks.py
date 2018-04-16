@@ -39,7 +39,10 @@ def get_job_details():
             job_url = _job_title.text.strip("\n")
 
             job_title = _job_title.text.strip("\n")
-            date_posted = date_post.text.strip("\n")
+            if date_post.text.strip("\n") == 'Today':
+                date_posted = date.today()
+            else:
+                date_posted = date.today() - timedelta(1)
             salary = job_salary.text.strip("\n")
             employment_type = job_employment_type.text.strip("\n")
             date_found = time

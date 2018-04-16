@@ -8,7 +8,7 @@ class PythonJobLondon(models.Model):
     date_found = models.DateTimeField(null=True, blank=True)
     date_posted = models.CharField(max_length=25, null=True, blank=True)
     salary = models.CharField(max_length=250, null=True, blank=True)
-    employment_type = models.CharField(max_length=20, blank=True,null=True)
+    employment_type = models.CharField(max_length=500, blank=True,null=True)
 
     class Meta:
         """To avoid duplicate entry in the database"""
