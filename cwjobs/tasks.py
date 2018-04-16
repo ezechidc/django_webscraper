@@ -12,7 +12,7 @@ def build_job_search_url():
     """search for python jobs posted in London within the last 24 hours"""
     urlformat = 'http://www.cwjobs.co.uk/jobs/python/in-london?postedwithin=1&page={page}'
     url = []
-    for num in range(11):
+    for num in range(4):
         next_page = str(num)
         url.append(urlformat.format(page=next_page))
     return url
