@@ -64,5 +64,6 @@ def save_jobs():
                     employment_type=jobs['employment'],
                     date_found=jobs['date']
                 )
+                print job
                 job.save()
     return
