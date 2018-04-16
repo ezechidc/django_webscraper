@@ -1,6 +1,6 @@
 from celery.schedules import crontab
 from celery.decorators import periodic_task
-from datetime import datetime, date, timedelta
+from datetime import date, timedelta
 from bs4 import BeautifulSoup
 import requests
 from django.utils import timezone
